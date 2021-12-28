@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>TWGSS Online Judge</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<link rel="stylesheet" type="text/css" href="/alert.css">
+	<meta charset="utf-8">
+  <html manifest="/test.appcache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/assets/image/icon.svg">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/regular.min.js" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+	</script>
+</head>
+
+<body>
+
+
+	<div class="header">
+
+		<a href="/" id="logo" class="unhighlightable"><img src="/assets/image/logo_alt.svg" height="32px" id="logo-light"><img src="/assets/image/logo_alt_dark.svg" height="32px" id="logo-dark"></a>
+
+
+    <ul id="nav">
+
+      <li><a class="web-section nav-lab unhighlightable" href="/lab.html">Laboratory</a></li>
+
+      <li><a class="web-section nav-problems unhighlightable" href="/problems.php"><img class="header-page-icon" src="/assets/image/icon_problems.svg">Problems</a></li>
+
+      <li><a class="web-section nav-contests unhighlightable" href="/contests.php"><img class="header-page-icon" src="/assets/image/icon_contests.svg">Contests</a></li>
+
+      <li><a class="web-section nav-leaderboard unhighlightable" href="/leaderboard.php"><img class="header-page-icon" src="/assets/image/icon_leaderboard.svg">Leaderboard</a></li>
+
+      <li><a class="web-section nav-submissions unhighlightable" href="/submissions.php"><img class="header-page-icon" src="/assets/image/icon_submissions.svg">ALL SUBMISSIONS (TEMP)</a></li>
+
+
+      <div class="nav-user-option web-section">
+      <li><a title="My Profile" class="pfp-container web-section nav-myself unhighlightable" href="/user/0.html"><img class="pfp header-page-icon" src="/assets/image/pfp-test.jpg"></a></li>
+
+      <li><a title="My Submissions" class="web-section nav-myself unhighlightable" href="/user/mysubmissions.html"><img class="header-page-icon" src="/assets/image/icon_submissions.svg"></a></li>
+      
+      <li><a title="Settings" class="web-section nav-settings unhighlightable" href="/settings.php"><img class="header-page-icon" src="/assets/image/icon_settings.svg"></a></li>
+      </div>
+        <!--li> <a href="/entry.php"  class="web-section unhighlightable">[TEMP] Entry page</a> </li>
+        <li><a href="/admin/index.html"  class="web-section unhighlightable"> [TEMP] Admin Page</a></li-->
+    </ul>
+
+    <div class="unhighlightable" id="clock"></div>
+    <script>
+      function countTime() {
+          var now = new Date().getTime();
+          const zeroPad = (num, places) => String(num).padStart(places, '0');
+          now += 1000 * 60 * 60 * 8; // Hong Kong UTC+8
+          var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((now % (1000 * 60)) / 1000);
+          document.getElementById("clock").innerHTML = zeroPad(hours, 2) + ":" + zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2);
+          setTimeout(countTime, 1000);
+      }
+      countTime();
+    </script>
+    </div>
+
+  </body>
+</html>

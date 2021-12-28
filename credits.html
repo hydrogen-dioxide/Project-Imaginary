@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TWGSS Online Judge</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/image/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+         $("#header").load("/header.html", null, function () { $('.nav-' + location.pathname.split("/")[1]).addClass('active'); });
+         $("#footer").load("/footer.html");
+         });
+	</script>
+  </head>
+
+<html>
+  <body>
+  <div id="header"></div>
+  <main>
+  <h1> <img class="page-icon" src="/assets/image/icon_credits.png"> Credits </h1>
+  <section>
+    <h2> Developers </h2>
+    <div class="table-container">
+      <table>
+        <tbody>
+          <tr>
+            <td> Chief Developer </td>
+            <td> Daniel Hsieh </td>
+          </tr>
+
+          <tr>
+            <td> General Developer </td>
+            <td> Ryan Chan </td>
+          </tr>
+
+          <tr>
+            <td> Frontend Developer </td>
+            <td> Jack Wong </td>
+          </tr>
+
+          <tr>
+            <td> Frontend Developer </td>
+            <td> Duncan Ng </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  </main>
+  <div id="footer"></div>
+  </body>
+</html>

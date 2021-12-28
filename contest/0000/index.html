@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TWGSS Online Judge</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/image/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+    $("#header").load("/header.html", null, function () { $('.nav-contests').addClass('active'); });
+    $("#footer").load("/footer.html");
+    });
+  </script>
+
+<html>
+  <div id="header"></div>
+  <main>
+	<h1> Beta Round #1 </h1>
+	<button onclick="location.href += '/submit.html'" class="btn submit"> Submit </button> 
+	<button onclick="location.href += '/submissions.php'" class="btn submission"> Submissions </button> 
+	<button onclick="location.href += '/results.html'" class="btn statistic"> Results </button> 
+	<button onclick="location.href += '/statistics.php'" class="btn statistic"> Statistics </button> 
+	<button onclick="location.href += '/set.php'" class="btn setting"> Setting </button> 
+  <br>
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr> <th> Problem # </th> <th> Problem Name </th> <th> Subtasks </th> <th> # of Solves</th></tr>
+      </thead>
+      <tbody>
+      <tr> <td> 0000 </td> <td> <a href="/problem/0000"> Printing Pages </td> <td> 8 + 7 + 15 + 19 + 21 + 10 + 13 + 7 </td> <td> 1 </td> </tr>
+      <tr> <td> 0001 </td> <td> Electronic Strip </td> <td> 20 + 30 + 50 </td> <td> 3 </td> <tr>
+      </tbody>
+    </table>
+  </div>
+  </main>
+  <div id="footer"></div>
+</html>

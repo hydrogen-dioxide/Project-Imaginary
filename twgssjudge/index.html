@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>TWGSS Online Judge</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/assets/image/icon.png">
+	<script src="/assets/js/include.js">
+	</script>
+	<script src="/assets/js/theme.js">
+	</script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+	</script>
+	<script>
+		$(document).ready(function(){
+         $("#header").load("/header.html", null, function () { $('.nav-' + location.pathname.split("/")[1]).addClass('active'); });
+         $("#footer").load("/footer.html");
+         });
+	</script>
+</head>
+
+<body>
+	<div id="header"></div>
+
+      <main>
+        	<!--button onclick="sendNotification();">Show Alert</button-->
+         <h1> Good Midnight! </h1>
+				 <div class="flex-container">
+
+					<div class="flex-child">
+              <div class="index-card">
+                <div class="grid-container">
+                    <div class="grid-item">
+                      <h2>Problem of the Week</h2>
+                      <a class="problem-stat-link" href="/problem/0000">
+                        <div class="problem-stat-block">
+                          <div class="problem-block">
+                            <div class="problem-id">0000</div>
+                            <div class="problem-name">Printing Pages</div>
+                          </div>
+                          <div class="stat-block">
+                            <div class="stat-label"> <img src="/assets/image/icon_solved.png"> Solved </div>
+                            <div class="stat-no"> 00 </div>
+                          </div>
+                          <div class="stat-block">
+                            <div class="stat-label"> <img src="/assets/image/icon_attempted.png"> Attempted </div>
+                            <div class="stat-no"> 00 </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+              </div>
+
+              <div class="index-card">
+                <h2> Recommended </h2>
+                      <a class="problem-stat-link" href="/problems/1130/problem_statement.html">
+                        <div class="problem-stat-block">
+                          <div class="problem-block">
+                            <div class="problem-id">1130</div>
+                            <div class="problem-name">Sad Birthday</div>
+                          </div>
+                          <div class="stat-block">
+                            <div class="stat-label"> <img src="/assets/image/icon_solved.png"> Solved </div>
+                            <div class="stat-no"> 0 </div>
+                          </div>
+                          <div class="stat-block">
+                            <div class="stat-label"> <img src="/assets/image/icon_attempted.png"> Attempted </div>
+                            <div class="stat-no"> 0 </div>
+                          </div>
+                        </div>
+                      </a>
+
+                      <a class="problem-stat-link" href="/problem/easy.html">
+                        <div class="problem-stat-block">
+                          <div class="problem-block">
+                            <div class="problem-id">????</div>
+                            <div class="problem-name">A very Easy Problem</div>
+                          </div>
+                          <div class="stat-block">
+                            <div class="stat-label"> <img src="/assets/image/icon_solved.png"> Solved </div>
+                            <div class="stat-no"> 1000 </div>
+                          </div>
+                          <div class="stat-block">
+                            <div class="stat-label"> <img src="/assets/image/icon_attempted.png"> Attempted </div>
+                            <div class="stat-no"> 1001 </div>
+                          </div>
+                        </div>
+                      </a>
+              </div>
+            </div>
+
+					
+					<div class="flex-child">
+            <div class="index-card">
+							<h2> Announcement </h2>
+							<div class="ann-card">
+								<div class="ann-head">
+                  <span class="ann-date"> 32/12/2021 &ensp; 24:61 </span>
+                  <span class="ann-title">Launch of TWGSS Online Judge!</span>
+								</div>
+                <div class="ann-content">
+                  [Not proofreaded] Welcome to TWGSS Online Judge! Develop by our team, we pay so much effort into this judge, please enjoy!
+                  <br>
+                  <button onclick="location.href='/credits.html'">Credits</button>
+                </div>
+							</div>
+							
+            </div>
+            
+					</div>
+					
+				</div>
+
+
+  
+      </main>
+      <div id="footer"></div>
+   </body>
+</html>
+<!--
+   <a href="/setting.php"> Setting </a>
+      <br>
+   <a href="/admin/index.html"> Admin </a>
+   -->

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>TWGSS Online Judge</title>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link rel='icon' href='/assets/image/icon.png'>
+	<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'>
+		$(document).ready(function(){
+			$('#header').load('/header.html', null, function () { $('.nav-' + location.pathname.split('/')[1]).addClass('active'); });
+			$('#footer').load('/footer.html');
+		});
+	</script>
+	<script src='/assets/js/include.js'></script>
+	<script>
+		function copy_code(id) {
+			var copyText = document.getElementById(id).innerText;
+			navigator.clipboard.writeText(copyText);
+			sendNotification();
+		}
+	</script>
+</head>
+
+<body>
+	<div id='header'></div>
+	<main>
+
+	<div class='problem-head'>
+		<div class='problem-id'>TOMMY</div>
+		<div class='problem-name'>Tom sleeping time (BETA)</div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_timelimit.png'> Time </div>
+		<div class='stat-no'> 1 s </div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_memlimit.png'> Memory </div>
+		<div class='stat-no'> 256 MB </div>
+	</div>
+	
+	<button onclick='location.href += '/submit.html'' class='btn submit'> Submit </button>
+	<button onclick='location.href += '/submissions.php'' class='btn submission'> Submissions </button> 
+	<button onclick='location.href += '/statistics.php'' class='btn statistic'> Statistics </button> 
+	<button onclick='location.href += '/set.php'' class='btn setting'> Setting </button>
+	<section>
+	<p>Tommy had developed a great interest in astronomy and physics when he was in secondary school. When Tommy grows up, he think his name is too childish, so he change his name to Tom. Now, Tom becomes a physics teacher! Life as a physics teacher is "boring", the only two activities of Tom does within the 24 hours everyday is teaching classes and watching stars, the time left is sleeping. As the favourite student of Tom, you decided to write a program to find out if your teacher Tom get enough rest, or any of his activities overlap.<p>
+	</section>
+	<section>
+		<h2 class='subheading'>INPUT</h2>
+	<p>The first line consists of two integers, N and M. Indicating the number of activity: teaching Physics classes, watching starts separately.<p>
+	<p>For the next N line, each line consists of Tis and Tif (in the format HHMM), indicating the starting time and finish time of Tom’s ith Physics class that he need to teach.<p>
+	<p>For the next M line, each line consists of Tjs and Tjf (in the format HHMM), indicating the starting time and finish time of Tom’s jth watching stars session.<p>
+	</section>
+	<section>
+		<h2 class='subheading'>OUTPUT</h2>
+	<p>The output consists of only one line.<p>
+	<p>If any of Tom’s activities overlap, output “Busy Tom”.<p>
+	<p>Otherwise, output Tom’s sleeping time (in minutes).<p>
+	</section>
+	<section>
+		<h2 class='subheading'>SAMPLE TESTS</h2>
+
+	  	<table class='sample-tests'>
+		<thead> <tr>
+		  	<th class='sample-heading'> # </th>
+		  	<th class='sample-heading'> Input </th>
+		  	<th class='sample-heading'> Output </th>
+		  	<th width='100%'></th>
+		</tr> </thead>
+		<tbody>
+			<tr>
+				<td class='stylized-number'> 1 </td>
+				<td class='sample-io code copyable' id='sample-1-in' ondblclick='copy_code(this.id)'>  </td>
+				<td class='sample-io code copyable' id='sample-1-out' ondblclick='copy_code(this.id)'>  </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class='sample-explanation' colspan='3'>  </td>
+			</tr>
+		</tbody> </table>
+	</section>
+	<section>
+		<h2 class='subheading'>CONSTRAINTS</h2>
+	</section>
+	<section>
+		<h2 class='subheading'>SUBTASKS</h2>
+
+		<table class='subtasks'>
+		<thead> <tr>
+			<th class='sample-heading'> # </th>
+			<th class='sample-heading'> Points </th>
+			<th class='sample-heading'> Constraints </th>
+		</tr> </thead>
+		<tbody>
+			<tr>
+				<td class='stylized-number'> 1 </td>
+				<td id='subtask-1' class='subtask-points'>  </td>
+				<td id='subtask-1-constraint' class='subtask-constraint'>  </td>
+			</tr>
+		</tbody> </table>
+	</section>
+
+	</main>
+	<div id='footer'></div>
+</body>
+</html>

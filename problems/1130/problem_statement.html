@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>TWGSS Online Judge</title>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link rel='icon' href='/assets/image/icon.png'>
+	<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'>
+		$(document).ready(function(){
+			$('#header').load('/header.html', null, function () { $('.nav-' + location.pathname.split('/')[1]).addClass('active'); });
+			$('#footer').load('/footer.html');
+		});
+	</script>
+	<script src='/assets/js/include.js'></script>
+	<script>
+		function copy_code(id) {
+			var copyText = document.getElementById(id).innerText;
+			navigator.clipboard.writeText(copyText);
+			sendNotification();
+		}
+	</script>
+</head>
+
+<body>
+	<div id='header'></div>
+	<main>
+
+	<div class='problem-head'>
+		<div class='problem-id'>1130</div>
+		<div class='problem-name'>Sad Birthday (v2)</div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_timelimit.png'> Time </div>
+		<div class='stat-no'> 1 s </div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_memlimit.png'> Memory </div>
+		<div class='stat-no'> 256 MB </div>
+	</div>
+	
+	<button onclick='location.href += '/submit.html'' class='btn submit'> Submit </button>
+	<button onclick='location.href += '/submissions.php'' class='btn submission'> Submissions </button> 
+	<button onclick='location.href += '/statistics.php'' class='btn statistic'> Statistics </button> 
+	<button onclick='location.href += '/set.php'' class='btn setting'> Setting </button>
+	<section>
+	<p>Daniel's birthday is coming! You, as a friend of him, decided to celebrate Daniel's 16th birthday. Unfortunately, there are too much test and exam. During exams, you cannot celebrate his birthday because you need to do revision (of course)! Therefore you decided to write a programme to see if you can celebrate his 16th birthday.<p>
+	</section>
+	<section>
+		<h2 class='subheading'>INPUT</h2>
+	<p>The first line contains \(Yb\), \(Mb\), \(Db\), separated by spaces. Indicating Daniel's 16th birthday.<p>
+	<p>The second line contains an integer \(N\), indicating the number of exams.<p>
+	<p>In the following \(2N\) lines, \(i\) ranging from 1 to \(N\).<p>
+	<p>The \((2(i-1)+i)\)th line contains \(Yis\), \(Mis\), \(Dis\), separated by spaces. Indicating the starting date of the ith exam.<p>
+	<p>The \(2i\)th line contains \(Yie\), \(Mie\), \(Die\), separated by spaces. Indicating the ending date of the \(i\)th exam.<p>
+	</section>
+	<section>
+		<h2 class='subheading'>OUTPUT</h2>
+	<p>If none of the exam overlap Daniel's 16th birthday, output "Happy Birthday!".<p>
+	<p>If any of the exam overlap Daniel's 16th birthday, output "Sad Birthday :(".<p>
+	</section>
+	<section>
+		<h2 class='subheading'>SAMPLE TESTS</h2>
+
+	  	<table class='sample-tests'>
+		<thead> <tr>
+		  	<th class='sample-heading'> # </th>
+		  	<th class='sample-heading'> Input </th>
+		  	<th class='sample-heading'> Output </th>
+		  	<th width='100%'></th>
+		</tr> </thead>
+		<tbody>
+			<tr>
+				<td class='stylized-number'> 1 </td>
+				<td class='sample-io code copyable' id='sample-1-in' ondblclick='copy_code(this.id)'>  </td>
+				<td class='sample-io code copyable' id='sample-1-out' ondblclick='copy_code(this.id)'>  </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class='sample-explanation' colspan='3'>  </td>
+			</tr>
+		</tbody> </table>
+	</section>
+	<section>
+		<h2 class='subheading'>CONSTRAINTS</h2>
+	</section>
+	<section>
+		<h2 class='subheading'>SUBTASKS</h2>
+
+		<table class='subtasks'>
+		<thead> <tr>
+			<th class='sample-heading'> # </th>
+			<th class='sample-heading'> Points </th>
+			<th class='sample-heading'> Constraints </th>
+		</tr> </thead>
+		<tbody>
+			<tr>
+				<td class='stylized-number'> 1 </td>
+				<td id='subtask-1' class='subtask-points'> 20 </td>
+				<td id='subtask-1-constraint' class='subtask-constraint'>  </td>
+			</tr>
+			<tr>
+				<td class='stylized-number'> 2 </td>
+				<td id='subtask-2' class='subtask-points'> 20 </td>
+				<td id='subtask-2-constraint' class='subtask-constraint'>  </td>
+			</tr>
+			<tr>
+				<td class='stylized-number'> 3 </td>
+				<td id='subtask-3' class='subtask-points'> 30 </td>
+				<td id='subtask-3-constraint' class='subtask-constraint'>  </td>
+			</tr>
+			<tr>
+				<td class='stylized-number'> 4 </td>
+				<td id='subtask-4' class='subtask-points'> 30 </td>
+				<td id='subtask-4-constraint' class='subtask-constraint'>  </td>
+			</tr>
+		</tbody> </table>
+	</section>
+
+	</main>
+	<div id='footer'></div>
+</body>
+</html>

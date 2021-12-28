@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>TWGSS Online Judge</title>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link rel='icon' href='/assets/image/icon.png'>
+	<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'>
+		$(document).ready(function(){
+			$('#header').load('/header.html', null, function () { $('.nav-' + location.pathname.split('/')[1]).addClass('active'); });
+			$('#footer').load('/footer.html');
+		});
+	</script>
+	<script src='/assets/js/include.js'></script>
+	<script>
+		function copy_code(id) {
+			var copyText = document.getElementById(id).innerText;
+			navigator.clipboard.writeText(copyText);
+			sendNotification();
+		}
+	</script>
+</head>
+
+<body>
+	<div id='header'></div>
+	<main>
+
+	<div class='problem-head'>
+		<div class='problem-id'>X0000</div>
+		<div class='problem-name'>Printing Pages</div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_timelimit.png'> Time </div>
+		<div class='stat-no'> 2 s </div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_memlimit.png'> Memory </div>
+		<div class='stat-no'> 256 MB </div>
+	</div>
+	
+	<button onclick="location.href = 'submit.html'" class='btn submit'> Submit </button>
+	<button onclick='location.href += '/submissions.php' class='btn submission'> Submissions </button> 
+	<button onclick='location.href += '/statistics.php' class='btn statistic'> Statistics </button> 
+	<button onclick='location.href += '/set.php' class='btn setting'> Setting </button>
+	<section>
+	</section>
+	<section>
+		<h2 class='subheading'>INPUT</h2>
+	</section>
+	<section>
+		<h2 class='subheading'>OUTPUT</h2>
+	</section>
+	<section>
+		<h2 class='subheading'>SAMPLE TESTS</h2>
+
+	  	<table class='sample-tests'>
+		<thead> <tr>
+		  	<th class='sample-heading'> # </th>
+		  	<th class='sample-heading'> Input </th>
+		  	<th class='sample-heading'> Output </th>
+		  	<th width='100%'></th>
+		</tr> </thead>
+		<tbody>
+			<tr>
+				<td class='stylized-number'> 1 </td>
+				<td class='sample-io code copyable' id='sample-1-in' ondblclick='copy_code(this.id)'> 1 </td>
+				<td class='sample-io code copyable' id='sample-1-out' ondblclick='copy_code(this.id)'> 2 </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class='sample-explanation' colspan='3'> 3 </td>
+			</tr>
+		</tbody> </table>
+	</section>
+	<section>
+		<h2 class='subheading'>CONSTRAINTS</h2>
+	</section>
+	<section>
+		<h2 class='subheading'>SUBTASKS</h2>
+
+		<table class='subtasks'>
+		<thead> <tr>
+			<th class='sample-heading'> # </th>
+			<th class='sample-heading'> Points </th>
+			<th class='sample-heading'> Constraints </th>
+		</tr> </thead>
+		<tbody>
+			<tr>
+				<td class='stylized-number'> 1 </td>
+				<td id='subtask-1' class='subtask-points'> 100 </td>
+				<td id='subtask-1-constraint' class='subtask-constraint'> Only <span class="inline-code">'1'</span> to  <span class="inline-code">'9'</span> exists in string \( S \), string \(S\) is valid. </td>
+			</tr>
+		</tbody> </table>
+	</section>
+
+	</main>
+	<div id='footer'></div>
+</body>
+</html>

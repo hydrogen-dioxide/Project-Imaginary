@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>TWGSS Online Judge</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/assets/image/icon.svg">
+	<script src="/assets/js/include.js">
+	</script>
+	<script src="/assets/js/theme.js">
+	</script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+	</script>
+	<script>
+		$(document).ready(function(){
+         $("#header").load("/header.html", null, function () { $('.nav-lab').addClass('active'); });
+         $("#footer").load("/footer.html");
+         });
+	</script>
+</head>
+
+<body>
+	<div id="header"></div>
+
+      <main>
+        <center>
+          <h1 class="sp"> Laboratory </h1>
+          Experiment here
+        </center>
+
+
+
+
+        <h2> User Block </h2>
+        <a class="user-link" href="/user/0.html">
+          <div class="user-block">
+            <div class="user-basic">
+              <img class="pfp" src="/assets/user/pfp/1.webp">
+              <span class="user-name">daniel</span>
+            </div>
+            <span class="user-display">Lonely Christmas rip </span>
+          </div>
+        </a>
+        
+        <h2> Problem Block </h2>
+        <a class="small-problem-link" href="/problem/X0000">
+          <div class="small-problem-block">
+            <div class="small-problem-basic"><span class="small-problem-id">X0000</span></div>
+            <span class="small-problem-name">Printing Pages (TESTING)</span>
+          </div>
+        </a>
+
+
+      </main>
+      <div id="footer"></div>
+   </body>
+</html>

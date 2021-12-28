@@ -1,0 +1,35 @@
+Information of chemical reaction:
+reactant:
+4H^+
+MnO4^-
+3e^-
+product:
+2H2O
+MnO2
+
+Information of chemical reaction:
+reactant:
+H2SO4
+8H^+
+8e^-
+product:
+4H2O
+H2S
+
+Information of chemical reaction:
+reactant:
+2I^-
+product:
+I2
+2e^-
+
+Information of redox with conc. sulphuric acid as reducing agent and iodine as oxidizing agent:
+reactant:
+H2SO4
+8H^+
+8I^-
+product:
+4H2O
+H2S
+4I2
+

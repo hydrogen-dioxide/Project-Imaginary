@@ -1,0 +1,102 @@
+html{
+	color: rgb(var(--TWGSS-green));
+}
+
+.btn {
+	border-color: transparent;
+	font-family: 'Electrolize';
+	border: 1px solid rgb(var(--TWGSS-green));
+  border-radius: 0px;
+	background-color: white;
+	color: black;
+	padding: 5px 10px;
+  margin: 0px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.submit{
+  border-radius: 2.5px;
+  color: rgb(var(--TWGSS-green));
+}
+
+.btn-on, .btn-off{
+  border-bottom: none;
+}
+
+.btn-on:hover{
+  color: white !important;
+}
+
+.btn-off:hover{
+  color: rgb(var(--TWGSS-green)) !important;
+}
+
+a{
+	color: rgb(var(--TWGSS-green))
+}
+
+.btn-on {
+	background-color: rgb(var(--TWGSS-green));
+	color: white;
+}
+
+.btn-off {
+	border-color: rgb(var(--TWGSS-green));
+	color: rgb(var(--TWGSS-green));
+}
+
+.status-msg {
+  font-size: 12px;
+  padding: 3px;
+  background: white;
+  border: 1px solid white;
+}
+
+.problem-header-hr {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.text {
+  letter-spacing: 0.5px;
+  color: rgb(var(--TWGSS-green));
+}
+
+h1{
+  font-size: large;
+  text-transform: none !important;
+  border: 0 !important;
+  padding-left: 0 !important;
+}
+h1::before{
+  visibility: hidden !important;
+}
+
+td{
+  animation: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  text-align: left !important;
+}
+
+tr{
+  background-color: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+table{
+  border: rgb(var(--TWGSS-green)) 1px solid !important;
+  padding: 50px !important;
+  border-collapse: separate !important;
+}
+
+#login_register_table{
+  border-radius: 2.5px;
+  border-top-right-radius: 0;
+}

@@ -1,0 +1,4 @@
+5
+1 13
+sed 's/[[:blank:]]*$//' input.txt
+sed '/^$/d' input.txt

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    <h1> **************** D-2 **************** </h1>
+    <form method="POST" action="upload.php" enctype="multipart/form-data" target="hidden-iframe">
+        Upload file.
+        <input type="file" id="file_in" name="file_in[]" multiple>
+        <button type="submit"> Enter </button>
+    </form>
+    <iframe name="hidden-iframe"></iframe> <!-- style="display: none;" -->
+    <button onclick="getFilesFromServer(0)"> Get file from server </button>
+    <button onclick="delAll()"> Delete ALL </button>
+    <p id="D"> </p>
+    <script>
+        function submit() {
+            var files = document.getElementById("file_in");
+            var D = document.getElementById("D");
+            var len = files.files.length;
+            for (var i = 0; i < len; i++) {
+                D.append(files.files[i].name);
+            }
+            D.append("Done!");
+        }
+
+        function getFilesFromServer(id) {
+            var xmlhttp = new XMLHttpRequest();
+            document.getElementById("D").innerHTML = "";
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("D").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "test.php?id=" + id, true);
+            xmlhttp.send();
+        }
+
+        function quote(name, dou = false) { return (dou ? ("\"" + name + "\"") : ("'" + name + "'")); }
+        function deleteFile(name) { // 1. name, 2. document root, 3. privilege
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "delete.php?id=" + name, true);
+            xmlhttp.send();
+        }
+
+        function delAll() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "delete.php?id=" + "ALLLLLLLLLLLLLLLLLLLLLLLL", true);
+            xmlhttp.send();
+            document.getElementById("D").innerHTML = "";
+        }
+
+        function uploadFile(name) {
+            document.getElementById("D").innerHTML = "";
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("D").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "upload.php?id=" + name, true);
+            xmlhttp.send();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title> TWGSS Online Judge</title>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link rel='icon' href='/assets/image/icon.png'>
+
+	<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'>
+	</script>
+
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'>
+	</script>
+	<script>
+		$(document).ready(function(){
+      $('#header').load('/header.html', null, function () { $('.nav-' + location.pathname.split('/')[1]).addClass('active'); });
+      $('#footer').load('/footer.html');
+      });
+	</script>
+	<script src='/assets/js/include.js'>
+
+	</script>
+	<script>
+		function copy_code(id) {
+          var copyText = document.getElementById(id).innerText;
+          navigator.clipboard.writeText(copyText);
+          sendNotification();
+        }
+	</script>
+</head>
+
+<body>
+	<div id='header'></div>
+
+	<main>
+		<div class='problem-head'>
+			<div class='problem-id'>0000</div>
+			<div class='problem-name'>Printing Pages</div>
+		</div>
+    <div class='stat-block'>
+      <div class='stat-label'> <img src='/assets/image/icon_timelimit.png'> Time </div>
+      <div class='stat-no'> 1s </div>
+    </div>
+    <div class='stat-block'>
+      <div class='stat-label'> <img src='/assets/image/icon_memlimit.png'> Memory </div>
+      <div class='stat-no'> 1GB </div>
+    </div>
+	<button onclick="location.href += '/submit.html'" class="btn submit"> Submit </button> 
+	<button onclick="location.href += '/submissions.php'" class="btn submission"> Submissions </button> 
+	<button onclick="location.href += '/statistics.php'" class="btn statistic"> Statistics </button> 
+	<button onclick="location.href += '/set.php'" class="btn setting"> Setting </button> 
+
+    <section>
+      One day, a mysterious explosion occur; and all the printers around the city had broken! You, as a computer enthusiast, decided to make a printer program, to reinvent the printers. Can you successfully be the hero and change the world?
+    </section>
+
+    <section>
+      <h2> INPUT </h2>
+      <p> The first line consists of two integers \( P, N \), the number of pages in the document to be printed and the length of the input string \( S \). </p>
+      <p> The second line consists of the input string \( S \). It is guranteed that it contains only ascii codes. However, any printable symbols in ascii, not restricted other than numbers, <span class='inline-code'>','</span>, <span class='inline-code'>';'</span> and <span class='inline-code'>'-'</span>, except <span class='inline-code'>'\n'</span> the nextline symbol, might exist in the input string \( S \).</p>
+    </section>
+
+    <section>
+      <h2> OUTPUT </h2>
+      <p> Output a single integer, the number of pages that should actually be printed. If the format of the input string \( S \) or the page number(s) is incorrect, output -1 (or the printer will be crashed!). </p>
+    </section>
+
+    <section>
+      <h2> SAMPLE TESTS </h2>
+      <table class='sample-tests'>
+          <thead> <tr>
+          <th class='sample-heading'> # </th>
+          <th class='sample-heading'> Input </th>
+          <th class='sample-heading'> Output </th>
+          <th width='100%'></th>
+          </tr> </thead>
+          <tbody>
+              <tr>
+                  <td class='stylized-number'> 1 </td>
+
+                  <td class='sample-io code copyable' id='sample-1-in' ondblclick='copy_code(this.id)'> 10 7 <br> 1,2,5-7 </td>
+
+                  <td class='sample-io code copyable' id='sample-1-out' ondblclick='copy_code(this.id)'> 5 </td>
+                  
+              </tr>
+              <tr>
+                <td></td>
+                <td class='sample-explanation' colspan='3'> Page 1, 2, 5, 6, 7, total of 5 pages, will be printed. </td>
+              </tr>
+              
+
+              <tr>
+                  <td class='stylized-number'> 2 </td>
+
+                  <td class='code copyable' id='sample-2-in' ondblclick='copy_code(this.id)'> 10 12 <br> 01, 2; 5 - 7 </td>
+
+                  <td class='code copyable' id='sample-2-out' ondblclick='copy_code(this.id)'> 5 </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class='sample-explanation' colspan='3'> Explanation same as sample test 1. Prevailing zeros <span class='inline-code'>01</span> and spaces may exist in the string \( S \).</td>
+              </tr>
+          </tbody>
+      </table>
+    </section>
+
+
+    <section>
+      <h2> CONSTRAINTS </h2>
+      <p> \( 1 \leq P \leq 10^9 \) </p>
+      <p> \( 1 \leq N \leq 10^5 \) </p>
+      <p> All symbols of string \( S \) is in ascii character set and printable. </p>
+      <p>
+          <span class='inline-code'>'\n'</span>, the nextline symbol, doesn't exist in \( S \).
+      </p>
+    </section>
+
+    <section>
+        <h2> SUBTASKS </h2>
+        <table class='subtasks'>
+            <thead> <tr>
+                <th class='sample-heading'> # </th>
+                <th class='sample-heading'> Points </th>
+                <th class='sample-heading'> Constraints </th>
+            </tr> </thead>
+            <tbody>
+                <tr>
+                    <td class='stylized-number'> 1 </td>
+  
+                    <td id='subtask-1' class='subtask-points'> 8 </td>
+  
+                    <td id='subtask-1-constraint' class='subtask-constraint'> Only <span class='inline-code'>'1'</span> to <span class='inline-code'>'9'</span> exists in string \( S \), string \( S \) is valid. </td>
+                </tr>
+                <tr>
+                    <td class='stylized-number'> 2 </td>
+  
+                    <td id='subtask-2' class='subtask-points'> 7 </td>
+  
+                    <td id='subtask-2-constraint' class='subtask-constraint'> \( P, N < 10 \), only <span class='inline-code'>'1'</span> to <span class='inline-code'>'9'</span>, <span class='inline-code'>','</span> and <span class='inline-code'>';'</span> exists in string \( S \), string \( S \) is valid. </td>
+                </tr>
+                <tr>
+                    <td class='stylized-number'> 3 </td>
+  
+                    <td id='subtask-3' class='subtask-points'> 15 </td>
+  
+                    <td id='subtask-3-constraint' class='subtask-constraint'> \( P, N < 10 \), only <span class='inline-code'>'1'</span> to <span class='inline-code'>'9'</span>, <span class='inline-code'>','</span>, <span class='inline-code'>';'</span>, <span class='inline-code'>'-'</span> exists in string \( S \), string \( S \) is valid. </td>
+                </tr>
+                <tr>
+                    <td class='stylized-number'> 4 </td>
+  
+                    <td id='subtask-4' class='subtask-points'> 19 </td>
+  
+                    <td id='subtask-4-constraint' class='subtask-constraint'> \( P, N \leq 10^5 \), only <span class='inline-code'>'0'</span> to <span class='inline-code'>'9'</span>, <span class='inline-code'>','</span> and <span class='inline-code'>';'</span> exists in string \( S \). </td>
+                </tr>
+                <tr>
+                    <td class='stylized-number'> 5 </td>
+  
+                    <td id='subtask-5' class='subtask-points'> 21 </td>
+  
+                    <td id='subtask-5-constraint' class='subtask-constraint'> \( P, N \leq 10^5 \), only <span class='inline-code'>'0'</span> to <span class='inline-code'>'9'</span>, <span class='inline-code'>','</span>, <span class='inline-code'>';'</span> and <span class='inline-code'>'-'</span> exists in string \( S \). </td>
+                </tr>
+                <tr>
+                    <td class='stylized-number'> 6 </td>
+  
+                    <td id='subtask-6' class='subtask-points'> 10 </td>
+  
+                    <td id='subtask-6-constraint' class='subtask-constraint'> \( P, N \leq 3000 \). </td>
+                </tr>
+                <tr>
+                    <td class='stylized-number'> 7 </td>
+  
+                    <td id='subtask-7' class='subtask-points'> 13 </td>
+  
+                    <td id='subtask-7-constraint' class='subtask-constraint'> \( P, N \leq 10^5 \). </td>
+                </tr>
+                <tr>
+                    <td class='stylized-number'> 8 </td>
+  
+                    <td id='subtask-8' class='subtask-points'> 7 </td>
+  
+                    <td id='subtask-8-constraint' class='subtask-constraint'> No additional constraints. </td>
+                </tr>
+            </tbody>
+        </table>
+      </section>
+
+    </main>
+    <div id='footer'></div>
+</body>
+</html>

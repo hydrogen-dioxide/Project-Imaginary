@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    <h1> **************** D-2 **************** </h1>
+    <form method="POST" action="upload.php" enctype="multipart/form-data" target="hidden-iframe">
+        Upload file.
+        <input type="file" id="file_in" name="file_in[]" multiple>
+        <button type="submit"> Enter </button>
+    </form>
+    <iframe name="hidden-iframe" style="display: none;"></iframe>
+    <button onclick="getFilesFromServer(0)"> Get file from server </button>
+    <button onclick="delAll()"> Delete ALL </button>
+    <p id="D"> </p>
+    <script>
+        function getFilesFromServer(id) {
+            var xmlhttp = new XMLHttpRequest();
+            document.getElementById("D").innerHTML = "";
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("D").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "get_files.php?task=0000&file=" + id, true);
+            xmlhttp.send();
+        }
+
+        function quote(name, dou = false) { return (dou ? ("\"" + name + "\"") : ("'" + name + "'")); }
+
+        function deleteFile(name) { // 1. name, 2. document root, 3. privilege
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "delete.php?task=0000&id=" + name, true);
+            xmlhttp.send();
+        }
+
+        function delAll() {
+            deleteFile("__ALL__");
+            document.getElementById("D").innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>

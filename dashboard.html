@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>TWGSS Online Judge</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/image/icon.png">
+
+    <script src="/assets/js/include.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+      $("#header").load("/header.html", null, function () { $('.nav-' + location.pathname.split("/")[1]).addClass('active'); });
+      $("#footer").load("/footer.html");
+      });
+    </script>
+  </head>
+  
+  <body>
+
+    <div id="header"></div>
+
+    <button onclick="sendNotification();">Show Alert</button>
+    <div class="alert hide">
+      <span class="fas fa-exclamation-circle"></span>
+      <span class="msg">Warning: This is a warning alert!</span>
+      <div class="close-btn">
+          <span class="fas fa-times"></span>
+      </div>
+    </div>
+    
+    <main>
+      <h1> Welcome home! </h1>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="grid-title">Problem of the Week</div>
+          <div class="problem-block">
+              <div class="problem-id">00000</div>
+              <div class="problem-name">Today is a good day</div>
+              <div class="stat-block">
+                <div class="stat-label">Solved</div>
+                <div class="stat-no">99</div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+      <a href="/submission/0000.html">SUBMISSION PAGE DEVELOPMENT SHORTCUT</a>
+      <br>
+      <a href="/problem/0000/statistics.php">PROBLEM STATS PAGE DEVELOPMENT SHORTCUT</a>
+      <br>
+      <a href="/user/1.html">USER PAGE DEVELOPMENT SHORTCUT</a>
+      <br>
+      <a href="/contest/0000/results.html">CONTEST RESULT DEVELOPMENT SHORTCUT</a>
+      <p>
+        PROGRESS:
+        <br>
+        NOT DONE: Index (Home), Notification, Problem Statistics
+        <br>
+        BASCIALLY DONE: Problems, Contests, Leaderboard (except the table size)
+      </p>
+
+    </main>
+    <div id="footer"></div>
+  </body>
+</html>
+<!--
+	  <a href="/setting.php"> Setting </a>
+      <br>
+	  <a href="/admin/index.html"> Admin </a>
+-->
