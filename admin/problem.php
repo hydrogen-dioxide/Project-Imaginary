@@ -1,21 +1,15 @@
-
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <title> Create New Problem | TWGSS Online Judge (alpha) </title>
-    <link rel="shortcut icon" type="image/png" href="../assets/image/icon.png" />
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-      $(document).ready(function(){
-      $("#header").load("/header.html", null, function () { $('.nav-problem').addClass('active'); });
-      $("#footer").load("/footer.html");
-      });
-    </script>
+<?php 
+  function includeHeader($id="", $title="", $nav="") {
+    include($_SERVER['DOCUMENT_ROOT']."/head.php");
+  }
+  includeHeader("problem/TO_BE_REPLACED/set", "New problem", "problems");
+?>
 </head>
+
 <body>
 	<div id="header"> </div>
   <main>
@@ -26,78 +20,51 @@
 	</style>
   <h2 class="subheading"> <A href="help.html"> HELP </A> </h2>
 	<!-- <form action="load_problem.php" method="GET" target="bin"> <h2 class="subheading"> Load Problem: <input type="text" name="problemID"> </input> <button class="btn submit" type="submit"> Submit </button></h2> </form> -->
-	<?php include("../php/sql_connect.php");
-		$problem = array(
-					"problemID"			=> "",
-					"problemName"		=> "", 
-					"timeLimit"			=> "2", 
-					"memoryLimit"		=> "256",
-					"problemType"		=> "batch", 
-					"author"			=> "myself", 
-					"acceptedLanguages" => '{ "C++11": "on", "C++14": "on", "C++17": "on", "Python": "on" }',
-					"proposedTime"		=> strval(time()),
-					"problemStatement"	=> "#Input\n\n#Output\n\n#Sample Tests\n\n#Constraints\n\n#Subtasks\n",
-					"subtasks"			=> "{}",
-					"samples"			=> "{}");
-		foreach($problem as $key => $value){
-			if($key != "acceptedLanguages" && $key != "subtasks" && $key != "samples") $problem[$key] = htmlspecialchars($value);
-		}
-		
-		if($taskID){
-			$result = $conn->query("SELECT * FROM `problem` WHERE `problemID` = " . "'" . $conn->real_escape_string($taskID) . "';");
-			if(mysqli_num_rows($result) >= 1){
-				list($problem['problemID'], $problem['problemName'], $problem['timeLimit'], $problem['memoryLimit'], $problem['problemType'], $problem['author'], $problem['acceptedLanguages'], $problem['proposedTime'], $problem['problemStatement'], $generatedStatement, $problem['subtasks'], $problem['samples']) = mysqli_fetch_row($result);
-				if($conn->errno) echo $conn->error;
-			}
-		}
-		$problemID			= htmlspecialchars($problem['problemID']);
-		$problemName		= htmlspecialchars($problem['problemName']);
-		$timeLimit			= htmlspecialchars($problem['timeLimit']);
-		$memoryLimit		= htmlspecialchars($problem['memoryLimit']);
-		$problemType		= htmlspecialchars($problem['problemType']);
-		$author				= htmlspecialchars($problem['author']);
-		$acceptedLanguages	= json_decode($problem['acceptedLanguages'], true);
-		$proposedTime		= htmlspecialchars($problem['proposedTime']);
-		$problemStatement	= htmlspecialchars($problem['problemStatement']);
-		$subtask_array		= json_decode($problem['subtasks'], true);
-		$sample_array		= json_decode($problem['samples'], true);
+	<?php include($_SERVER['DOCUMENT_ROOT']."/php/sql_connect.php");
+    include($_SERVER['DOCUMENT_ROOT']."/php/ProblemClass.php");
+    $taskID = $_GET['taskID'];
+    $problem = new Problem();
+		$problem->loadFromSQL($taskID);
+		$problemID			= htmlspecialchars($problem->problemID);
+		$problemName		= htmlspecialchars($problem->problemName);
+		$timeLimit			= htmlspecialchars($problem->timeLimit);
+		$memoryLimit		= htmlspecialchars($problem->memoryLimit);
+		$problemType		= htmlspecialchars($problem->problemType);
+		$problemAuthor	= htmlspecialchars($problem->problemAuthor);
+		$acceptedLanguages	= json_decode($problem->acceptedLanguages, true);
+		$proposedTime		= htmlspecialchars($problem->proposedTime);
+		$problemStatement	= htmlspecialchars($problem->problemStatement);
+		$subtask_array		= json_decode($problem->subtasks, true);
+    echo $json_last_error;
+		$sample_array		= json_decode($problem->samples, true);
 	?>
-    <h2 class="subheading"> Rejudge </h2>
-    If there is a wrong test case, then all solutions will need to be re-judged.
-    <br>
-    <button id="rejudge" class="btn warning"> Rejudge All </button>
-    <script>
-        function warning(){
-            alert("Are you sure?");
-        }
-        document.getElementById("rejudge").onclick=(warning);
-    </script>
-	
+
+  <button> Preview </button> <button> Test data </button> <button> Solutions </button>
     <h2 class="subheading"> Task Information </h2>
-	<form action="/php/task_info.php" method="POST">
+	<form action="/php/update_task.php" method="POST">
 		<div class="table-container">
     <table>
 			<tbody>
 				<tr>
 					<td style="min-width: 200px;"><label for="id">Task ID (4-6 Characters)</label></td>
-					<td style="width: 20px;"> </td>
-					<td><input type="text" id="id" class="input px-3 py-2 border-2" name="id" required minlength="4" maxlength="6" size="10" value="<?php echo $problemID ?>"></td>
+					
+					<td><input type="text" id="id" class="input px-3 py-2 border-2" name="problemID" required minlength="4" maxlength="6" size="10" value="<?php echo $problemID ?>"></td>
 				</tr>
 				<tr>
 					<td><label for="name">Problem name (max. 50 Characters)</label></td>
-					<td> </td>
-					<td><input type="text" id="name" class="input px-3 py-2 border-2" name="name" required minlength="1" maxlength="50" size="50" value="<?php echo $problemName ?>"></td>
+					
+					<td><input type="text" id="name" class="input px-3 py-2 border-2" name="problemName" required minlength="1" maxlength="50" size="50" value="<?php echo $problemName ?>"></td>
 				</tr>
 				<tr>
 					<td><label for="time">Time limit</label></td>
-					<td> </td>
-					<td><input type="number" id="time" class="input px-3 py-2 border-2" name="time" min="0.1" max="60" step="0.1" size="10" value="<?php echo $timeLimit ?>"> s</td>
+					
+					<td><input type="number" id="time" class="input px-3 py-2 border-2" name="timeLimit" min="0.1" max="60" step="0.1" size="10" value="<?php echo $timeLimit ?>"> s</td>
 				</tr>
 				<tr>
 					<td><label for="memory">Memory limit</label></td>
-					<td> </td>
+					
 					<td>
-						<input type="number" id="memory" class="input px-3 py-2 border-2" name="memory" min="1" max="1024" step="1" size="10" value="<?php echo $memoryLimit ?>">
+						<input type="number" id="memory" class="input px-3 py-2 border-2" name="memoryLimit" min="1" max="1024" step="1" size="10" value="<?php echo $memoryLimit ?>">
 						<select name="mem_u" class="input px-3 py-2" >
 							<option value="KB" >KB</option>
 							<option value="MB" selected>MB</option>
@@ -106,17 +73,17 @@
 				</tr>
 				<tr>
 					<td><label for="name">Problem type</label></td>
-					<td> </td>
-					<td><input type="text" id="type" class="input px-3 py-2 border-2" name="type" required minlength="1" maxlength="50" size="50" value="<?php echo $problemType ?>"></td>
+					
+					<td><input type="text" id="type" class="input px-3 py-2 border-2" name="problemType" required minlength="1" maxlength="50" size="50" value="<?php echo $problemType ?>"></td>
 				</tr>
 				<tr>
 					<td><label for="origin">Problem origin</label></td>
-					<td> </td>
-					<td><input type="text" id="origin" class="input px-3 py-2 border-2" name="origin" maxlength="50" size="50" value="<?php echo $author ?>"></td>
+					
+					<td><input type="text" id="origin" class="input px-3 py-2 border-2" name="problemAuthor" maxlength="50" size="50" value="<?php echo $problemAuthor ?>"></td>
 				</tr>
 				<tr>
 					<td><label for="language">Accepted Language</label></td>
-					<td> </td>
+					
 					<td>
 						<input type="checkbox" id="cpp11" name="C++11" value="on" <?php echo ($acceptedLanguages["C++11"] == "on" ? "checked" : ""); ?> >
 						<label>C++ 11</label>
@@ -130,8 +97,8 @@
 				</tr>
 				<tr>
 					<td style="min-width: 200px;"> <label for="problem_statement"> Problem Statement </label> </td>
-					<td style="width: 20px;"> </td>
-					<td> <textarea class="code" cols="60" rows="20" name="statement" style="resize: none; white-space: pre-wrap; overflow-wrap: normal;"><?php echo $problemStatement; ?></textarea> </td>
+					
+					<td> <textarea class="code" cols="60" rows="20" name="problemStatement" style="resize: none; white-space: pre-wrap; overflow-wrap: normal;"><?php echo $problemStatement; ?></textarea> </td>
 				</tr>
 			</tbody>
 		</table>
@@ -143,32 +110,32 @@
 			<tbody>
 				<tr>
 					<td> <label for="test_cases"> Test Cases </label> </td>
-					<td> </td>
+					
 					<td> <input type="file" name="test_cases" multiple>  </td>
 				</tr>
 				<tr>
 					<td> <label for="checker"> Checker </label> </td>
-					<td> </td>
+					
 					<td> <input type="file" name="checker" multiple>  </td>
 				</tr>
 				<tr>
 					<td> <label for="validator"> Validator </label> </td>
-					<td> </td>
+					
 					<td> <input type="file" name="validator" multiple>  </td>
 				</tr>
 				<tr>
 					<td> <label for="expected_solution"> Expected solution(s) </label> </td>
-					<td> </td>
+					
 					<td> <input type="file" name="expected_solution" multiple>  </td>
 				</tr>
 				<tr>
 					<td> <label for="suboptimal_solution"> Suboptimal solution(s) </label> </td>
-					<td> </td>
+					
 					<td> <input type="file" name="suboptimal_solution" multiple>  </td>
 				</tr>
 				<tr>
 					<td> <label for="scorer"> Scorer </label> </td>
-					<td> </td>
+					
 					<td> <input type="file" name="scorer" multiple>  </td>
 				</tr>
 			</tbody>
@@ -218,7 +185,7 @@
 			</thead>
 			<tbody id="subtasks-table">
 			<?php
-			for($i = 1; $i <= sizeof($subtask_array); $i++){
+			for($i = 1; $i <= ($subtask_array ? sizeof($subtask_array) : 0); $i++){
 				echo "
 					<tr id='sample-subtask-$i' style='padding: 0px;'>
 						<td> $i </td>
@@ -262,7 +229,7 @@
 			</thead>
 			<tbody id="samples-table">
 			<?php
-			for($i = 1; $i <= sizeof($sample_array); $i++){
+			for($i = 1; $i <= ($sample_array ? sizeof($sample_array) : 0); $i++){
 				echo "
 					<tr id='sample-case-$i' style='samplepadding: 0px;'>
 						<td> $i </td>

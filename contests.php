@@ -1,49 +1,41 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-  <title>TWGSS Online Judge</title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/assets/image/icon.png">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-    $(document).ready(function(){
-    $("#header").load("/header.html", null, function () { $('.nav-contests').addClass('active'); });
-    $("#footer").load("/footer.html");
-    });
-  </script>
-  </head>
+<head>
+<?php 
+  function includeHeader($id="", $title="", $nav="") {
+    include($_SERVER['DOCUMENT_ROOT']."/head.php");
+  }
+  includeHeader("contests", "Contests", "contests");
+?>
+</head>
 
 <html>
   <body>
   <div id="header"></div>
   <main>
-  <h1> <img class="page-icon" src="/assets/image/icon_contests.png"> Contests </h1>
+  <h1> <img class="page-icon" src="/assets/image/icon_contests.svg"> Contests </h1>
   <div class="table-container">
-    <table class="big-table">
+    <table class="mid-table">
       <thead>
         <tr>
-          <th> Contest # </th>
-          <th> Contest Name </th>
+          <th colspan="2"> Contest </th>
           <th> # Participants </th>
         </tr>
       </thead>
 
-      <tbody>
-        <tr>
-          <td> 0000 </td>
-          <td> <a href="/contest/0000"> Beta Round #1 </td>
-          <td> 1 </td>
-        </tr>
-        
-        <tr>
-          <td> 0001 </td>
-          <td> Beta Round #2 </td>
-          <td> 3 </td>
-        <tr>
+      <tbody >
+        <?php
+          include('php/sql_connect.php');
+          include('Utility.php');
+          $res = $conn->query("SELECT contestID, contestName, contestantCount FROM contest ORDER BY contestID ASC LIMIT 10");
+          if($res){
+           while($row = mysqli_fetch_array($res)){
+              echo Utility::getContestRow($row[0], $row[1], $row[2]);
+            }
+          }
+        ?>
       </tbody>
     </table>
   </div>

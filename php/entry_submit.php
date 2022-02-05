@@ -1,8 +1,9 @@
+<!-- https://www.wikihow.com/Hack-a-Website-with-Basic-HTML-Coding woosh immediately hacked myself -->
 <!-- Beginning of php form -->
 <?php include("sql_connect.php"); include("session.php");
 	function sendDiscordMsg($content, $username = null){
 		// URL FROM DISCORD WEBHOOK SETUP
-		global $DC_WEBHOOK; // Defined in secret_info.php;
+		global $DC_WEBHOOK;
 		$url = $DC_WEBHOOK;
 		$headers = [ 'Content-Type: application/json; charset=utf-8' ];
 		$POST = [ 'username' => ($username == null ? "Anonymous" : $username), 'content' => "$content" ];
@@ -52,7 +53,7 @@
 
 		do{
 			if($login_mode == "email"){
-				$search = $conn->query("SELECT userID, username, email, hash FROM `login` WHERE email='$userID' AND password='$password'");
+				$search = $conn->query("SELECT userID, userName, email, hash FROM `user` WHERE email='$userID' AND password='$password'");
 				$row = mysqli_fetch_assoc($search);
 				$msg = "Login success. Login mode: " . $login_mode . '.<br>' . "UserID: " . $row['userID'] . ", username: " . $row['username'] . ", email: " . $row['email'];
 				$realUserID = $row['userID'];
@@ -62,7 +63,7 @@
 					break;
 				}
 			}else{
-				$search = $conn->query("SELECT userID, username, email, hash FROM `login` WHERE username='$userID' AND password='$password'");
+				$search = $conn->query("SELECT userID, userName, email, hash FROM `user` WHERE username='$userID' AND password='$password'");
 				$row = mysqli_fetch_assoc($search);
 				$msg = "Login success. Login mode: " . $login_mode . '.<br>' . "UserID: " . $row['userID'] . ", username: " . $row['username'] . ", email: " . $row['email'];
 				$realUserID = $row['userID'];
@@ -94,24 +95,8 @@
 		$error = 0;
 
 		do{
-			// ***** start of SQL connection *****
-			$sql_servername =	$SQL_SERVERNAME;
-			$sql_username   =	$SQL_USERNAME;
-			$sql_password   =	$SQL_PASSWORD;
-			$sql_database   = $SQL_DATABASE;
-			// Create connection
-			$conn = new mysqli($sql_servername, $sql_username, $sql_password, $sql_database);
-
-			// Check connection
-			if ($conn->connect_error) {
-				$msg = "Error: unable to connect to SQL server. Please contact the server admin.";
-				$error = 1;
-				echo "Unable to connect to the SQL server" . "<br>";
-				break;
-			}
-
 			echo "SQL Connected successfully" . "<br>";
-			// ***** end of SQL connection *****
+
 			if(!(isset($_POST['username']) && !empty($_POST['username']) AND 
 					isset($_POST['email']) && !empty($_POST['email']) AND 
 					isset($_POST['password']) && !empty($_POST['password']) AND 
@@ -148,14 +133,14 @@
 				break;
 			} 
 
-			$search = $conn->query("SELECT userID, username, email, hash FROM `login` WHERE username='$username'");
+			$search = $conn->query("SELECT userID, userName, email, hash FROM `user` WHERE username='$username'");
 			if(!$error && (mysqli_num_rows($search) > 0)){
 				$msg = "Error: Username already taken.";
 				$error = 1;
 				break;
 			}
 			
-			$search = $conn->query("SELECT userID, username, email, hash FROM `login` WHERE email='$email'");
+			$search = $conn->query("SELECT userID, userName, email, hash FROM `user` WHERE email='$email'");
 			if(!$error && (mysqli_num_rows($search) > 0)){
 				$msg = "Error: Email already in use.";
 				$error = 1;
@@ -181,12 +166,12 @@
 				// break;
 			}
 
-			$sql = "INSERT INTO `login` (`username`, `password`, `email`, `hash`)
+			$sql = "INSERT INTO `user` (`userName`, `password`, `email`, `hash`)
 					VALUES ('$username', '$password', '$email', '$hash');";
 			$conn->query($sql);
 
-			$discord_msg = $username . ' with email ' . $email . 'has registrated. Wow, it works!';
-			sendDiscordMsg($discord_msg, "registrationBOT"); // SENDS MESSAGE TO DISCORD
+			$discord_msg = $username . ' with email ' . $email . 'has registrated.';
+			sendDiscordMsg($discord_msg, "registrationBOT");
 		} while(0);
 		setcookie('message', $msg, 0, "/");
 		header("Location: /entry.php");

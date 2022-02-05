@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>TWGSS Online Judge</title>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link rel='icon' href='/assets/image/icon.png'>
+	<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'>
+		$(document).ready(function(){
+			$('#header').load('/header.html', null, function () { $('.nav-' + location.pathname.split('/')[1]).addClass('active'); });
+			$('#footer').load('/footer.html');
+		});
+	</script>
+	<script src='/assets/js/include.js'></script>
+	<script>
+		function copy_code(id) {
+			var copyText = document.getElementById(id).innerText;
+			navigator.clipboard.writeText(copyText);
+			sendNotification();
+		}
+	</script>
+</head>
+
+<body>
+	<div id='header'></div>
+	<main>
+
+	<div class='problem-head'>
+		<div class='problem-id'></div>
+		<div class='problem-name'></div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_timelimit.png'> Time </div>
+		<div class='stat-no'>  s </div>
+	</div>
+	<div class='stat-block'>
+		<div class='stat-label'> <img class='page-icon' src='/assets/image/icon_memlimit.png'> Memory </div>
+		<div class='stat-no'>   </div>
+	</div>
+	
+	<button onclick='location.href += '/submit.html'' class='btn submit'> Submit </button>
+	<button onclick='location.href += '/submissions.php'' class='btn submission'> Submissions </button> 
+	<button onclick='location.href += '/statistics.php'' class='btn statistic'> Statistics </button> 
+	<button onclick='location.href += '/set.php'' class='btn setting'> Setting </button>
+	<section>
+	</section>
+
+	</main>
+	<div id='footer'></div>
+</body>
+</html>

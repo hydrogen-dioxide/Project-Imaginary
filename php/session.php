@@ -1,6 +1,9 @@
 <?php include("sql_connect.php");
+
+class Session{
+
 function loadUser($userID){ // loadUser info. Some maybe stored in the cookie, while currently the userID is stored in the session.
-	$result = $conn->query("SELECT * FROM `login` WHERE `userID` = '$userID';");
+	$result = $conn->query("SELECT userID, username, email FROM `login` WHERE `userID` = '$userID';");
 	if($conn->errno) echo $conn->error;
 	if(mysqli_num_rows($result) == 0) return false;
 	$row = mysqli_fetch_assoc($result);
@@ -74,4 +77,8 @@ function checkSession()
         return false;
     }
 }
+
+}
+
+
 ?>

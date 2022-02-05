@@ -4,11 +4,10 @@ html{
 
 .btn {
 	border-color: transparent;
-	font-family: 'Electrolize';
 	border: 1px solid rgb(var(--TWGSS-green));
   border-radius: 0px;
-	background-color: white;
-	color: black;
+	background-color: rgb(var(--background-colour));
+	color: rgb(var(--background-colour));
 	padding: 5px 10px;
   margin: 0px;
 	font-size: 16px;
@@ -25,7 +24,7 @@ html{
 }
 
 .btn-on:hover{
-  color: white !important;
+  color: rgb(var(--white)) !important;
 }
 
 .btn-off:hover{
@@ -38,7 +37,7 @@ a{
 
 .btn-on {
 	background-color: rgb(var(--TWGSS-green));
-	color: white;
+	color: rgb(var(--white));
 }
 
 .btn-off {
@@ -48,15 +47,16 @@ a{
 
 .status-msg {
   font-size: 12px;
-  padding: 3px;
-  background: white;
-  border: 1px solid white;
+  padding: 5px;
+  border: 1px solid rgb(var(--TWGSS-green));
+  margin-top: 10px;
+  border-radius: 2.5px;
 }
 
 .problem-header-hr {
   margin-top: 8px;
   margin-bottom: 10px;
-  color: white;
+  color: rgb(var(--white));
 }
 
 .text {

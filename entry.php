@@ -2,19 +2,19 @@
 
 <html style="height:100%;">
 <head>
-	<title>TWGSS Online Judge</title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
+	<meta charset="utf-8">
+  <title> Entry | TWGSS Online Judge</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/assets/image/icon.svg">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+	</script>
+  <script src="/assets/js/include.js"></script>
+	<link rel="stylesheet" type="text/css" href="/style.css">
 	<link rel="stylesheet" type="text/css" href="/entry.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="/assets/image/icon.svg">
+  <link rel="icon" href="/assets/image/icon.svg">
 	<script src="/assets/js/include.js">
-	</script>
-	<script src="/assets/js/theme.js">
-	</script>
-
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 	</script>
 </head>
 
@@ -22,7 +22,9 @@
     <!-- Hardcoded sizes, The writer is afraid of compatiability. -->
     <div style="height:10%; width:inherit;"> </div>
     <div style="margin: 0 auto">
-        <div id="logo" style="width: 435px; margin-bottom: 25px; align-items: center; text-align: center;"><img src="/assets/image/logo_alt.svg" height="60px" id="logo-light"><img src="/assets/image/logo_alt_dark.svg" height="60px" id="logo-dark" style="position: absolute; left: 0;right: 0; margin: auto;"></div>
+        <div class="unhighlightable" style="display: flex;margin-bottom: 40px; justify-content: center;">
+          <img src="/assets/image/logo.svg" style="height: 40px">
+        </div>
 
         <div style="width: 100%; display: flex; flex-direction: rows; flex-wrap: wrap;">
 
@@ -63,7 +65,7 @@
             } ?>
 
         <script>
-            // control which panel to be shown, 1: login; 0: register
+            // 0: register; 1: login
             function switch_panel(is_login) {
                 var elem = document.getElementById('login_register_panel');
                 const button_on = document.querySelector('.btn-on');
@@ -81,6 +83,6 @@
         </script>
 
     </div>
-    <div id="footer"> ©2021&emsp;Tsuen Wan Government Secondary School Olympiad in Informatics Team </div>
+    <div id="footer"> ©2022&emsp;TWGSS Olympiad in Informatics Team </div>
 </body>
 </html>

@@ -14,7 +14,6 @@
   z-index: 1;
   box-sizing: border-box;
 }
-
 .alert.show{
   /*pointer-events: auto;*/
   animation: show 1s ease forwards;

@@ -1,5 +1,5 @@
-<?php include("sql_connect.php");
-
+<?php
+  // header('Location: '. '/problem/X0000/submissions.php');
 	function deleteDirectory($dir) { // Credit: https://stackoverflow.com/questions/1653771/how-do-i-remove-a-directory-that-is-not-empty/49396280
 		if (!file_exists($dir)) return true; if (!is_dir($dir)) return unlink($dir);
 		foreach (scandir($dir) as $item) { if ($item == '.' || $item == '..') continue; 
@@ -7,6 +7,14 @@
 		return rmdir($dir);
 	}
 
+  function TL_ML($probID){
+    include("sql_connect.php");
+    $result = $conn->query("SELECT `timeLimit`, `memoryLimit` from `problem` where `problemID` = '" . $conn->real_escape_string($probID)."'");
+    $row = $result->fetch_row();
+    return $row[0] . ' ' . $row[1];
+  }
+
+  include("sql_connect.php");
 	// header('Location: submission page.html');
 	set_time_limit(300);
 
@@ -32,7 +40,7 @@
 	$language = $_POST["language"];
 	echo "Programming Lauguage: " . $language . "<br>";
 
-	$dir = $_SERVER["DOCUMENT_ROOT"] . '/tmp/' . $hash . '/';
+	$dir = '/var/www/tmp/' . $hash . '/';
 	mkdir($dir);
 
 	$pathtofile = $dir . "program" . suffix($language);
@@ -65,7 +73,7 @@
 		return '"'. $conn->real_escape_string($s) . '"';
 	}
 
-	$sql = sprintf("INSERT INTO submission (problemID, userID, sourceCode, usedLanguage, submissionTime, hash)
+	$sql = sprintf("INSERT INTO submission (problemID, userID, sourceCode, language, submissionTime, hash)
 					VALUES (%s, %s, %s, %s, %s, %s)", f($_POST['problemID']), f($_SESSION['userID']), f($content), f($_POST['language']), f(time()), f($hash));
 
   // echo $sql;
@@ -83,16 +91,26 @@
 	
   // Example: "judge /tmp/hash/ C++11"
 
-  $command = "cd $dir; bash ../../problems/$_POST[problemID]/judge.sh " . "program" . suffix($language) . " $language";
+  $command = "mkdir $dir; cd $dir; /var/www/problems/$_POST[problemID]/judge $language program".suffix($language).' '.$_POST['problemID']." > submission.txt";
+  // INPUT: judge.sh file lang TL ML
   echo $command;
 	system($command);
-	echo "<p> Done! </p>";
-
-  // deleteDirectory($dir);
+	echo "<p>Done!</p>";
   
-	// $result = fopen("../background/submission 0.txt", "r") or die("Unable to open submission result file!");  // TODO: hardcode
-	// echo "<pre>" . fread($result, filesize("../background/submission 0.txt")) . "</pre>";  // TODO: hardcode
-	// fclose($result);
+  $result = file_get_contents($dir."/submission.txt");
+  echo "<pre>" . $result . "</pre>";
 
-  echo "</pre>";
+  $submissionID = $conn->query("SELECT `submissionID` from `submission` WHERE `hash` = \"$hash\"")->fetch_row()[0];
+
+  include($_SERVER['DOCUMENT_ROOT']."/php/SubmissionClass.php");
+  $submission = new Submission(); 
+  $submission->loadFromString($result);
+  $sql = sprintf("UPDATE `submission`
+  SET `verdict` = %s, `score` = %s, `runtime` = %s, `memory` = %s, `results` = %s
+  WHERE `submissionID` = $submissionID;", f($submission->verdict), f($submission->score), f($submission->runtime), f($submission->memory), f(json_encode($submission->results)));
+  echo "<pre>".$sql."</pre>";
+  $conn->query($sql);
+  if($conn->errno) echo $conn->error;
+  deleteDirectory($dir);
+  // header("Location: /problem/$_POST[problemID]/submissions");
 ?>
